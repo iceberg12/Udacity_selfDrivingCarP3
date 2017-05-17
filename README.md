@@ -18,13 +18,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/image1.png
-[image2]: ./examples/image2.png
-[image3]: ./examples/image3.png
-[image4]: ./examples/image4.png
-[image5]: ./examples/image5.png
-[image6]: ./examples/image6.png
-[image7]: ./examples/image7.png
+[image1]: ./examples/structure.png
+[image2]: ./examples/driving.png
+[image3]: ./examples/hist_1.png
+[image4]: ./examples/hist_2.png
+[image5]: ./examples/center.png
+[image6]: ./examples/left.png
+[image7]: ./examples/right.png
 
 ---
 ### Files Submitted & Code Quality
@@ -51,11 +51,25 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. Creation of the Training Set & Training Process
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. To capture good driving behavior, I first recorded two laps on track one using center lane driving. I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to steer back to the center when it is off the road. Then I repeated this process on track two in order to get more data points.
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road.
 
-Data collection is the first important part. As in project requirement, data collection can only performed on Track 1. I decided to use Udacity sample data as starting point. Data balance is the key, because there were not enough strong left and right steering moments in this training data. To create such images and steerings, I looked for the existing strong steerings, then employed the left / right camera images with a further steering adjustment 0.25. For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
+![alt text][image1]
 
-To augment the data set, I also flipped images and angles thinking that this would make the model generalized for both left and right turnings. Others things I did were 
+Data collection is the first important part. As in project requirement, data collection can only performed on Track 1. I decided to use Udacity sample data as starting point. Data balance is the key, because there were not enough strong left and right steering moments in this training data. To create such images and steerings, I looked for the existing strong steerings, then employed the left / right camera images with a further steering adjustment 0.25. 
+
+![alt text][image5]("Center camera") ![alt text][image6]("Left camera") ![alt text][image7]("Right camera")
+
+For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
+
+Distribution of steering angles before
+
+![alt text][image3]
+
+and after adding strong steerings
+
+![alt text][image4]
+
+To further augment the data set, I also flipped images and angles thinking that this would make the model generalized for both left and right turnings. Others things I did were 
 
 1. Cropping images to remove the sky and front deck
 2. Resize the images to 64x64 to reduce the number of parameters in my model
