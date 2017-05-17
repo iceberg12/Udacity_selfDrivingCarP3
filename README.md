@@ -62,7 +62,7 @@ Data collection is the first important part. As in project requirement, data col
 | "Center camera" | "Left camera" | "Right camera" |
 
 
-| ![alt text][image5]  | [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com) | [![GraphicStock](http://www.graphicstock.com/images/logo.jpg)](http://graphicstock.com) |
+| [![alt text][image5]]  | [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com) | [![GraphicStock](http://www.graphicstock.com/images/logo.jpg)](http://graphicstock.com) |
 |:---:|:---:|:---:|
 | http://videoblocks.com | http://audioblocks.com | http://graphicstock.com |
 
