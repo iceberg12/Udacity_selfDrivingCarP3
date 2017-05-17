@@ -57,7 +57,7 @@ Left camera | Center camera | Right camera
 :-------------------------:|:-------------------------:|:-------------------------:
 ![alt text][image6]  |  ![alt text][image5] | ![alt text][image7]
 
-For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
+For example, to get a strong left steering image, I looked for a good left steering image where angle < -0.1 and paired its corresponding right camera image with steering = (existing angle - 0.25). The result is a stronger left steering moment.
 
 Distribution of steering angles before
 
