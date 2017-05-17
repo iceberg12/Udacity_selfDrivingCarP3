@@ -18,16 +18,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+[image1]: ./examples/image1.png
+[image2]: ./examples/image2.png
+[image3]: ./examples/image3.png
+[image4]: ./examples/image4.png
+[image5]: ./examples/image5.png
+[image6]: ./examples/image6.png
+[image7]: ./examples/image7.png
 
 ---
 ### Files Submitted & Code Quality
@@ -52,78 +49,44 @@ The model.py file contains the code for training and saving the convolution neur
 
 ### Model Architecture and Training Strategy
 
-#### 1. An appropriate model architecture has been employed
+#### 1. Creation of the Training Set & Training Process
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. To capture good driving behavior, I first recorded two laps on track one using center lane driving. I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to steer back to the center when it is off the road. Then I repeated this process on track two in order to get more data points.
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+Data collection is the first important part. As in project requirement, data collection can only performed on Track 1. I decided to use Udacity sample data as starting point. Data balance is the key, because there were not enough strong left and right steering moments in this training data. To create such images and steerings, I looked for the existing strong steerings, then employed the left / right camera images with a further steering adjustment 0.25. For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
 
-#### 2. Attempts to reduce overfitting in the model
+To augment the data set, I also flipped images and angles thinking that this would make the model generalized for both left and right turnings. Others things I did were 
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+1. Cropping images to remove the sky and front deck
+2. Resize the images to 64x64 to reduce the number of parameters in my model
+3. Randomly adjusting the brightness of the images to increase robustness.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+I finally randomly shuffled the data set and put 10% of the data into a validation set. I used this training data for training the model. The validation set helped determine if the model was over or under fitting.
 
-#### 3. Model parameter tuning
+#### 2. Solution Design Approach
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The overall strategy for deriving a model architecture was to estimate correctly the steering angle based on a given image taken from the car. 
 
-#### 4. Appropriate training data
+Input images are normalized in the model using a Keras lambda layer at the input layer, and the model includes RELU layers to introduce nonlinearity. 
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+At first I tried the simple LeNet model, but that doesn't work very well. So I started to use the base model [End to End Learning for Self-Driving Cars](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) by Nvidia as a base and keep tuning.
 
-For details about how I created the training data, see the next section. 
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a bit higher mean squared error on the validation set. This implied that the model was overfitting.
 
-### Model Architecture and Training Strategy
+There are totally five convolutional layers and three fully connected layers leading to an output control value which is the steering angle. I used strided convolutions in the first three convolutional layers with a 2×2 stride and a 5×5 kernel and a non-strided convolution with a 3×3 kernel size in the last two convolutional layers.
 
-#### 1. Solution Design Approach
+To combat the overfitting, the model contains dropout layers in order to reduce overfitting. In addition, L2 kernel regularization were added at every layers to increase robustness. The model was trained and validated on different data sets to ensure that the model was not overfitting. The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track, as a requirement to pass this test.
 
-The overall strategy for deriving a model architecture was to ...
-
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
-
-#### 2. Final Model Architecture
-
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+Here is the architecture
 
 ![alt text][image1]
 
-#### 3. Creation of the Training Set & Training Process
+The ideal number of epochs was 5 as further training does not substantially improve the performance in validation error. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+#### 3. Performance
 
-![alt text][image2]
+The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images.
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
