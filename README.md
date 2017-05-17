@@ -18,7 +18,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/structure.png
+[image1]: ./examples/structure.png "Title test"
 [image2]: ./examples/driving.png
 [image3]: ./examples/hist_1.png
 [image4]: ./examples/hist_2.png
