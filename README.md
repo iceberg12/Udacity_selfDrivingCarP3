@@ -1,9 +1,5 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Behavioral Cloning Project**
@@ -57,22 +53,9 @@ Training data was chosen to keep the vehicle driving on the road. I used a combi
 
 Data collection is the first important part. As in project requirement, data collection can only performed on Track 1. I decided to use Udacity sample data as starting point. Data balance is the key, because there were not enough strong left and right steering moments in this training data. To create such images and steerings, I looked for the existing strong steerings, then employed the left / right camera images with a further steering adjustment 0.25.
 
-![alt text][image5]
-
-![alt text][image6]
-
-![alt text][image7]
-
-| Center camera | Left camera | Right camera |
-
-
-| ![alt text][image2]  | [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com) | [![GraphicStock](http://www.graphicstock.com/images/logo.jpg)](http://graphicstock.com) |
-|:---:|:---:|:---:|
-| http://videoblocks.com | http://audioblocks.com | http://graphicstock.com |
-
-Solarized dark             |  Solarized Ocean
-:-------------------------:|:-------------------------:
-[![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com)  |  [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com)
+Left camera | Center camera | Right camera
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text][image6]  |  ![alt text][image5] | ![alt text][image7]
 
 For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
 
