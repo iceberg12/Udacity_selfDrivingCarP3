@@ -59,12 +59,16 @@ Data collection is the first important part. As in project requirement, data col
 
 | ![alt text][image5] | ![alt text][image6] | ![alt text][image7] |
 |:---:|:---:|:---:|
-| "Center camera" | "Left camera" | "Right camera" |
+| Center camera | Left camera | Right camera |
 
 
-| [![alt text][image5]]  | [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com) | [![GraphicStock](http://www.graphicstock.com/images/logo.jpg)](http://graphicstock.com) |
+| ![alt text][image2]  | [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com) | [![GraphicStock](http://www.graphicstock.com/images/logo.jpg)](http://graphicstock.com) |
 |:---:|:---:|:---:|
 | http://videoblocks.com | http://audioblocks.com | http://graphicstock.com |
+
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+[![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com)  |  [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com)
 
 For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
 
