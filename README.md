@@ -53,7 +53,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road.
 
-![alt text][image2]
+![alt text](./examples/driving.png "Driving")
 
 Data collection is the first important part. As in project requirement, data collection can only performed on Track 1. I decided to use Udacity sample data as starting point. Data balance is the key, because there were not enough strong left and right steering moments in this training data. To create such images and steerings, I looked for the existing strong steerings, then employed the left / right camera images with a further steering adjustment 0.25. 
 
