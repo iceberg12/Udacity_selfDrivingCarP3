@@ -18,7 +18,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/structure.png "Title test"
+[image1]: ./examples/structure.png
 [image2]: ./examples/driving.png
 [image3]: ./examples/hist_1.png
 [image4]: ./examples/hist_2.png
@@ -57,7 +57,9 @@ Training data was chosen to keep the vehicle driving on the road. I used a combi
 
 Data collection is the first important part. As in project requirement, data collection can only performed on Track 1. I decided to use Udacity sample data as starting point. Data balance is the key, because there were not enough strong left and right steering moments in this training data. To create such images and steerings, I looked for the existing strong steerings, then employed the left / right camera images with a further steering adjustment 0.25. 
 
-![alt text]([image5] "Center camera") ![alt text]([image6] "Left camera") ![alt text]([image7] "Right camera")
+![alt text][image5] "Center camera"
+![alt text][image6] "Left camera"
+![alt text][image7] "Right camera"
 
 For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
 
