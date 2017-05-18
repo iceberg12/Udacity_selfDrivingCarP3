@@ -75,6 +75,8 @@ To further augment the data set, I also flipped images and angles thinking that 
 
 I finally randomly shuffled the data set and put 10% of the data into a validation set. I used this training data for training the model. The validation set helped determine if the model was over or under fitting.
 
+NOTE: Important! Any image pre-processing done using the Keras fit_generator function outside of the Keras architecture should be copied into validation and test data. It gave me one night debugging because of this. Other that than, fit_generator is a very fast-performance approach to pre-process training data on-the-fly using CPU while the GPU is the training neural network.
+
 #### 2. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to estimate correctly the steering angle based on a given image taken from the car. 
