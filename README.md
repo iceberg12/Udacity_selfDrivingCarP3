@@ -95,11 +95,21 @@ Here is the architecture
 
 ![alt text][image1]
 
-The ideal number of epochs was 5 as further training does not substantially improve the performance in validation error. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+The ideal number of epochs was 20 as further training made the performance worse in real driving test. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
 #### 3. Performance
 
-The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images, and also the angle that define a good steering moment (changed from 0.1 to 0.15). The pre-processing like brightness, translation and croping ensured that the model was generalised for other scenarios. This generalisation was tested in the Track 2 which gave good results.
+The final step was to run the simulator to see how well the car was driving around track one.
+
+My first few test runs were really like a drunken driver due to too many of recovery images. To improve the driving behavior in these cases, I did some further fine tuning in 
+
+1. The steering adjustment on left/right camera images
+2. The angle that define a good steering moment (changed from 0.1 to 0.15). 
+3. The pre-processing like brightness, translation and croping ensured that the model was generalised for other scenarios. 
+4. Random sampling in the fit_generator function helped, while running through all samples at each epoch did not give me a good solution.
+5. I tried ELU. It was smoother for the driving, but longer number of epochs to reach the same loss, and it didn't react well with sharp turnings. Perhaps more sharp turning images must be included for this ELU.
+
+This generalisation was tested in the Track 2 which gave good results.
 
 ### Conclusion
 
