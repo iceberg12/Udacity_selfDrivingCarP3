@@ -97,7 +97,7 @@ The ideal number of epochs was 5 as further training does not substantially impr
 
 #### 3. Performance
 
-The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images. The pre-processing like brightness, translation and croping ensured that the model was generalised for other scenarios. This generalisation was tested in the Track 2 which gave good results.
+The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images, and also the angle that define a good steering moment (changed from 0.1 to 0.15). The pre-processing like brightness, translation and croping ensured that the model was generalised for other scenarios. This generalisation was tested in the Track 2 which gave good results.
 
 ### Conclusion
 
