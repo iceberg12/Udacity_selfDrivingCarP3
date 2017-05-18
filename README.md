@@ -109,8 +109,8 @@ My first few test runs were really like a drunken driver due to too many of reco
 4. Random sampling in the fit_generator function helped, while running through all samples at each epoch did not give me a good solution.
 5. I tried ELU. It was smoother for the driving, but longer number of epochs to reach the same loss, and it didn't react well with sharp turnings. Perhaps more sharp turning images must be included for this ELU.
 
-This generalisation was tested in the Track 2 which gave good results.
-
 ### Conclusion
 
 It has been a fun experience for struggling with driving the car in the simulator to master it, and realize the model runs better than me =.=!
+
+To work on the Challenge of Track 2.
