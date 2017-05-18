@@ -1,9 +1,5 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Behavioral Cloning Project**
@@ -57,24 +53,11 @@ Training data was chosen to keep the vehicle driving on the road. I used a combi
 
 Data collection is the first important part. As in project requirement, data collection can only performed on Track 1. I decided to use Udacity sample data as starting point. Data balance is the key, because there were not enough strong left and right steering moments in this training data. To create such images and steerings, I looked for the existing strong steerings, then employed the left / right camera images with a further steering adjustment 0.25.
 
-![alt text][image5]
+Left camera | Center camera | Right camera
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text][image6]  |  ![alt text][image5] | ![alt text][image7]
 
-![alt text][image6]
-
-![alt text][image7]
-
-| Center camera | Left camera | Right camera |
-
-
-| ![alt text][image2]  | [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com) | [![GraphicStock](http://www.graphicstock.com/images/logo.jpg)](http://graphicstock.com) |
-|:---:|:---:|:---:|
-| http://videoblocks.com | http://audioblocks.com | http://graphicstock.com |
-
-Solarized dark             |  Solarized Ocean
-:-------------------------:|:-------------------------:
-[![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com)  |  [![AudioBlocks](https://dtyn3c8zjrx01.cloudfront.net/img/assets/audioblocks/images/logo.png)](http://audioblocks.com)
-
-For example, to get a strong left steering image, I looked for a good left steering image (steering angle < -0.1) and paired its corresponding right camera image with (existing steering - 0.25). The result is a stronger left steering moment.
+For example, to get a strong left steering image, I looked for a good left steering image where angle < -0.1 and paired its corresponding right camera image with steering = (existing angle - 0.25). The result is a stronger left steering moment.
 
 Distribution of steering angles before
 
@@ -91,6 +74,8 @@ To further augment the data set, I also flipped images and angles thinking that 
 3. Randomly adjusting the brightness of the images to increase robustness.
 
 I finally randomly shuffled the data set and put 10% of the data into a validation set. I used this training data for training the model. The validation set helped determine if the model was over or under fitting.
+
+NOTE: Important! Any image pre-processing done using the Keras fit_generator function outside of the Keras architecture should be copied into validation and test data. It gave me one night debugging because of this. Other that than, fit_generator is a very fast-performance approach to pre-process training data on-the-fly using CPU while the GPU is the training neural network.
 
 #### 2. Solution Design Approach
 
@@ -114,8 +99,8 @@ The ideal number of epochs was 5 as further training does not substantially impr
 
 #### 3. Performance
 
-The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images.
+The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images, and also the angle that define a good steering moment (changed from 0.1 to 0.15). The pre-processing like brightness, translation and croping ensured that the model was generalised for other scenarios. This generalisation was tested in the Track 2 which gave good results.
 
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+### Conclusion
 
-
+It has been a fun experience for struggling with driving the car in the simulator to master it, and realize the model runs better than me =.=!
