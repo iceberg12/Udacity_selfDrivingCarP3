@@ -97,8 +97,8 @@ The ideal number of epochs was 5 as further training does not substantially impr
 
 #### 3. Performance
 
-The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images.
+The final step was to run the simulator to see how well the car was driving around track one. To improve the driving behavior in these cases, I did some further fine tuning in the steering adjustment on left/right camera images. The pre-processing like brightness, translation and croping ensured that the model was generalised for other scenarios. This generalisation was tested in the Track 2 which gave good results.
 
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+### Conclusion
 
-
+It has been a fun experience for struggling with driving the car in the simulator to master it, and realize the model runs better than me =.=!
